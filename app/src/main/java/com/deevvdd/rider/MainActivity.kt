@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         findViewById<MaterialButton>(R.id.btnStart).setOnClickListener { startService() }
         findViewById<MaterialButton>(R.id.btnStopService).setOnClickListener { stopService() }
+        findViewById<MaterialButton>(R.id.btnEmit).setOnClickListener {
+
+        }
         createChannel(this)
     }
 

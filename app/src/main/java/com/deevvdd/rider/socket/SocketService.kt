@@ -41,6 +41,8 @@ class SocketService : Service() {
         } catch (e: URISyntaxException) {
             Timber.d("Socket Connect Error ${e.message}")
         }
+        socket.emit("12345", "asfasldfjasdfadskfaks")
+        Timber.d("Emit Order Id")
     }
 
     private fun emitLocation(location: Location) {
@@ -48,12 +50,13 @@ class SocketService : Service() {
         val json = JSONObject()
         json.put("lat", location.latitude)
         json.put("lng", location.longitude)
-        socket.emit("message", json)
+        json.put("to","12345")
+        socket.emit("location", json)
     }
 
     private fun emitLocationOnError(message: String) {
         Timber.d("Emit Location Error : $message")
-        socket.emit("message", message)
+        socket.emit("orderId", message)
     }
 
 
@@ -87,6 +90,6 @@ class SocketService : Service() {
     companion object {
         const val CHANNEL_ID = "LocationRemainderChannel"
         const val ONGOING_NOTIFICATION_ID = 100
-        const val SOCKET_URL = "http://api2.hungrynow.co.th:3333"
+        const val SOCKET_URL = "https://socket1.hungrynow.co.th"
     }
 }
